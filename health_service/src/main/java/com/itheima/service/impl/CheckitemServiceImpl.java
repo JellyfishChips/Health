@@ -5,11 +5,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.Constant.Constant;
 import com.itheima.dao.CheckitemDao;
+import com.itheima.dao.CheckitemGroupDao;
 import com.itheima.entity.PageResult;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckitemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @param
@@ -26,6 +29,9 @@ public class CheckitemServiceImpl implements CheckitemService {
 
     @Autowired
     private CheckitemDao checkitemDao;
+
+    @Autowired
+    private CheckitemGroupDao checkitemGroupDao;
 
     /**
      * @className CheckitemServiceImpl
@@ -74,6 +80,11 @@ public class CheckitemServiceImpl implements CheckitemService {
     @Override
     public void edit(CheckItem checkItem) {
         checkitemDao.edit(checkItem);
+    }
+
+    @Override
+    public List<CheckItem> findAll() {
+        return checkitemGroupDao.findAll();
     }
 
     /**

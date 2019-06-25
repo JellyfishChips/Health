@@ -3,6 +3,7 @@ package com.itheima.dao;
 import com.github.pagehelper.Page;
 import com.itheima.pojo.CheckItem;
 
+
 public interface CheckitemDao {
     void add(CheckItem checkItem);
 
@@ -15,4 +16,5 @@ public interface CheckitemDao {
     CheckItem findById(Integer id);
 
     void edit(CheckItem checkItem);
+
 }

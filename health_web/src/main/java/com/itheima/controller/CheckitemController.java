@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @param
  * @author JellyfishChips
@@ -124,5 +126,20 @@ public class CheckitemController {
             return new Result(false, Constant.EDIT_CHECKGROUP_FAIL);
         }
         return new Result(true, Constant.EDIT_CHECKGROUP_SUCCESS);
+    }
+
+    @RequestMapping("/findAll")
+    public Result findAll() {
+        try {
+            List<CheckItem> checkitemList = checkitemService.findAll();
+            if (checkitemList != null && checkitemList.size() > 0) {
+                return new Result(true, Constant.QUERY_CHECKGROUP_SUCCESS, checkitemList);
+            } else {
+                return new Result(false, Constant.QUERY_CHECKGROUP_FAIL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, Constant.ADD_CHECKGROUP_FAIL);
+        }
     }
 }

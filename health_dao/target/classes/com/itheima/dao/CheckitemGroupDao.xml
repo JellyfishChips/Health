@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.CheckitemGroupDao">
+
+    <sql id="current">
+        id,code,name,sex,age,price,type,attention,remark
+    </sql>
+
+    <sql id="group">
+        id, code, name, helpCode, sex, remark, attention
+    </sql>
+
+    <!--查询所有-->
+    <select id="findAll" resultType="com.itheima.pojo.CheckItem">
+        select <include refid="current"></include> from t_checkitem
+    </select>
+
+    <!--新增-->
+    <insert id="addGroup" parameterType="com.itheima.pojo.CheckGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into t_checkgroup(code,name,sex,helpCode,remark,attention)
+            values
+      	(#{code},#{name},#{sex},#{helpCode},#{remark},#{attention})
+    </insert>
+
+    <!--设置两表关系-->
+    <insert id="setCheckGroupAndCheckitem" parameterType="hashmap">
+        insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id)
+      		values
+      	(#{checkGroup_id},#{checkitem_id})
+    </insert>
+
+    <!--分页查询-->
+    <select id="findPage" parameterType="string" resultType="com.itheima.pojo.CheckGroup">
+        select <include refid="group"></include> from t_checkgroup
+        <if test="value != null and value.length >0">
+            where code = #{value} or name = #{value} or helpCode = #{value}
+        </if>
+    </select>
+
+    <!--根据id查询-->
+    <select id="findById" parameterType="int" resultType="com.itheima.pojo.CheckGroup">
+        select <include refid="group"></include> from t_checkgroup where id = #{id}
+    </select>
+
+    <!--根据检查组id查询检查项id-->
+    <select id="findCheckitemIdsByCheckitemGroupId" parameterType="int" resultType="int">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{value}
+    </select>
+
+    <!--更新基本信息-->
+    <update id="update" parameterType="com.itheima.pojo.CheckGroup" useGeneratedKeys="true" keyProperty="id">
+        update t_checkgroup
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="helpCode != null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="attention != null">
+                attention = #{attention},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--根据检查组id删除检查项id（t_checkgroup_checkitem）-->
+    <delete id="deleteAssocation" parameterType="int">
+       delete from t_checkgroup_checkitem
+        where checkgroup_id = #{id}
+    </delete>
+</mapper>

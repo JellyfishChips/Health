@@ -3,6 +3,8 @@ package com.itheima.service;
 import com.itheima.entity.PageResult;
 import com.itheima.pojo.CheckItem;
 
+import java.util.List;
+
 public interface CheckitemService {
     void add(CheckItem checkItem);
 
@@ -13,4 +15,6 @@ public interface CheckitemService {
     CheckItem findById(Integer id);
 
     void edit(CheckItem checkItem);
+
+    List<CheckItem> findAll();
 }
