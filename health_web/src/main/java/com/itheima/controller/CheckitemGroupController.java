@@ -1,7 +1,7 @@
 package com.itheima.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.itheima.Constant.Constant;
+import com.itheima.constant.Constant;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
@@ -78,5 +78,18 @@ public class CheckitemGroupController {
             return new Result(false, Constant.EDIT_CHECKGROUP_FAIL);
         }
         return new Result(true, Constant.EDIT_CHECKGROUP_SUCCESS);
+    }
+
+    //查询所有
+    @RequestMapping("/findAll")
+    public Result findAll() {
+        try {
+            List<CheckGroup> groups = checkitemGroupService.findAll();
+            return new Result(true, Constant.QUERY_CHECKGROUP_SUCCESS, groups);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, Constant.QUERY_CHECKGROUP_FAIL );
+        }
+
     }
 }

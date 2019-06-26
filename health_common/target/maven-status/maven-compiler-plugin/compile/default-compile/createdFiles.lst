@@ -1,1 +1,3 @@
-com\itheima\Constant\Constant.class
+com\itheima\constant\Constant.class
+com\itheima\constant\RedisConstant.class
+com\itheima\utils\QiniuUtils.class

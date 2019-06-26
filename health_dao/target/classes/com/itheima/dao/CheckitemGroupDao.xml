@@ -79,4 +79,9 @@
        delete from t_checkgroup_checkitem
         where checkgroup_id = #{id}
     </delete>
+
+    <!--查询所有-->
+    <select id="findAllGroups" resultType="com.itheima.pojo.CheckGroup">
+        select <include refid="group"></include> from t_checkgroup
+    </select>
 </mapper>
