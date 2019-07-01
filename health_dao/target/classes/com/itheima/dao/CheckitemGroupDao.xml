@@ -11,6 +11,19 @@
         id, code, name, helpCode, sex, remark, attention
     </sql>
 
+    <resultMap id="baseResultMap" type="com.itheima.pojo.CheckGroup">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+    </resultMap>
+    <resultMap id="findCheckitemById" type="com.itheima.pojo.CheckGroup" extends="baseResultMap">
+        <collection property="checkItems" column="id" select="com.itheima.dao.CheckitemDao.findCheckitemById" ofType="com.itheima.pojo.CheckItem"/>
+    </resultMap>
+
     <!--查询所有-->
     <select id="findAll" resultType="com.itheima.pojo.CheckItem">
         select <include refid="current"></include> from t_checkitem
@@ -83,5 +96,11 @@
     <!--查询所有-->
     <select id="findAllGroups" resultType="com.itheima.pojo.CheckGroup">
         select <include refid="group"></include> from t_checkgroup
+    </select>
+    
+    <!--手机端查询详情-->
+    <select id="findCheckgroupsBySetmealId" parameterType="int" resultMap="findCheckitemById">
+        select <include refid="group"></include> from t_checkgroup
+        where id in (  select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id} )
     </select>
 </mapper>

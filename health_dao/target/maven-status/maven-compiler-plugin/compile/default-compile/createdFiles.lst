@@ -1,3 +1,6 @@
+com\itheima\dao\CheckitemDao.class
+com\itheima\dao\MemberDao.class
+com\itheima\dao\OrderDao.class
 com\itheima\dao\CheckitemGroupDao.class
 com\itheima\dao\SetmealDao.class
-com\itheima\dao\CheckitemDao.class
+com\itheima\dao\OrderSettingDao.class

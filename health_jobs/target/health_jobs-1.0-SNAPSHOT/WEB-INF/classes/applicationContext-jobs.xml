@@ -29,7 +29,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
         <property name="jobDetail" ref="jobDetail"/>
         <!--指定触发时间-->
         <property name="cronExpression">
-            <value>0 0 2 * * ?</value>
+            <value>0 0/1 * * * ? </value>
         </property>
     </bean>
     <!-- 注册一个统一的调度工厂，通过这个调度工厂调度任务 -->

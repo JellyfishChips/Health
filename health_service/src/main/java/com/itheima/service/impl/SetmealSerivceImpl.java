@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,6 +65,34 @@ public class SetmealSerivceImpl implements SetmealSerivce {
 
         //将图片名保存到jedis
         setPicInRedis(setmeal.getImg());
+    }
+
+    /**
+     * @className SetmealSerivceImpl
+     * @description  手机端查询套餐
+     * @param
+     * @return java.util.List<com.itheima.pojo.Setmeal>
+     * @author JellyfishChips
+     * @date 2019/6/28 21:22
+     * @version 1.0
+     */
+    @Override
+    public List<Setmeal> getSetmeal() {
+        return setmealDao.getSetmeal();
+    }
+
+    /**
+     * @className SetmealSerivceImpl
+     * @description 手机端查询详情
+     * @param id
+     * @return com.itheima.pojo.Setmeal
+     * @author JellyfishChips
+     * @date 2019/6/29 9:46
+     * @version 1.0
+     */
+    @Override
+    public Setmeal findById(Integer id) {
+        return setmealDao.findById(id);
     }
 
     private void setPicInRedis(String img) {
