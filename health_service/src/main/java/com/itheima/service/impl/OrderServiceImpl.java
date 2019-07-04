@@ -117,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
 
         //预约成功，更新当日预约人数
         orderSetting.setReservations(reservations + 1);
-        orderSettingDao.update(orderSetting);
+        orderSettingDao.editNumberByOrderDate(orderSetting);
 
         //返回true
         return new Result(true, Constant.ORDER_SUCCESS, orderType);

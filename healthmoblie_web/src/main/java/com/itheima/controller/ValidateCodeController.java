@@ -27,6 +27,15 @@ public class ValidateCodeController {
     @Autowired
     private JedisPool jedisPool;
 
+    /**
+     * @className ValidateCodeController
+     * @description  预约验证码
+     * @param telephone
+     * @return com.itheima.entity.Result
+     * @author JellyfishChips
+     * @date 2019/7/1 20:16
+     * @version 1.0
+     */
     @RequestMapping("/send4Order")
     public Result send4Order(String telephone) {
         Integer code = ValidateCodeUtils.generateValidateCode(6);
@@ -38,6 +47,29 @@ public class ValidateCodeController {
             return new Result(false, Constant.SEND_VALIDATECODE_FAIL);
         }
         jedisPool.getResource().setex(telephone + RedisMessageConstant.SENDTYPE_ORDER, 5 * 60, code.toString());
+        return new Result(true, Constant.SEND_VALIDATECODE_SUCCESS);
+    }
+
+    /**
+     * @className ValidateCodeController
+     * @description  登录验证码
+     * @param telephone
+     * @return com.itheima.entity.Result
+     * @author JellyfishChips
+     * @date 2019/7/1 20:16
+     * @version 1.0
+     */
+    @RequestMapping("/send4Login")
+    public Result send4Login(String telephone) {
+        Integer code = ValidateCodeUtils.generateValidateCode(6);
+        try {
+            //发送短信
+            SMSUtils.sendShortMessage(SMSUtils.VALIDATE_CODE, telephone, code.toString());
+        } catch (ClientException e) {
+            e.printStackTrace();
+            return new Result(false, Constant.SEND_VALIDATECODE_FAIL);
+        }
+        jedisPool.getResource().setex(telephone + RedisMessageConstant.SENDTYPE_LOGIN, 5 * 60, code.toString());
         return new Result(true, Constant.SEND_VALIDATECODE_SUCCESS);
     }
 }

@@ -1,5 +1,7 @@
 com\itheima\service\impl\OrderServiceImpl.class
 com\itheima\service\impl\CheckitemServiceImpl.class
 com\itheima\service\impl\CheckitemGroupServiceImpl.class
+com\itheima\service\impl\MemberServiceImpl.class
 com\itheima\service\impl\SetmealSerivceImpl.class
 com\itheima\service\impl\OrderSettingServiceImpl.class
+com\itheima\service\impl\UserServiceImpl.class

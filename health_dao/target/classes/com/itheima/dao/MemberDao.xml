@@ -77,7 +77,7 @@
     </update>
 
     <!--根据日期统计会员数，统计指定日期之前的会员数-->
-    <select id="findMemberCountBeforeDate" parameterType="string" resultType="int">
+    <select id="findMemberCountByMonth" parameterType="string" resultType="int">
         select count(id) from t_member where regTime &lt;= #{value}
     </select>
 
@@ -94,5 +94,10 @@
     <!--总会员数-->
     <select id="findMemberTotalCount" resultType="int">
         select count(id) from t_member
+    </select>
+
+    <!--查询该日期之前注册的会员数-->
+    <select id="findCountByMonth" resultType="java.lang.Integer" parameterType="string">
+      select count(id) from t_member where regTime &lt;= #{value}
     </select>
 </mapper>
