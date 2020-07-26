@@ -7,7 +7,7 @@ import com.itheima.constant.RedisMessageConstant;
 import com.itheima.entity.Result;
 import com.itheima.pojo.Order;
 import com.itheima.service.OrderService;
-import com.itheima.utils.SMSUtils;
+//import com.itheima.utils.SMSUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,11 +55,13 @@ public class OrderController {
         Result result = orderService.submit(map);
 
         //成功发送预约短信
+/*
         try {
             SMSUtils.sendShortMessage(SMSUtils.ORDER_NOTICE, telephone, map.get("orderDate").toString());
         } catch (ClientException e) {
             e.printStackTrace();
         }
+*/
         return result;
     }
 

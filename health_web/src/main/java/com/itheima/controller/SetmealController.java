@@ -8,7 +8,7 @@ import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
 import com.itheima.pojo.Setmeal;
 import com.itheima.service.SetmealSerivce;
-import com.itheima.utils.QiniuUtils;
+//import com.itheima.utils.QiniuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +57,7 @@ public class SetmealController {
             //使用UUID随机产生文件名称，防止同名文件覆盖
             String fileName = UUID.randomUUID().toString() + suffix;
             //使用工具类
-            QiniuUtils.upload2Qiniu(imgFile.getBytes(), fileName);
+            //QiniuUtils.upload2Qiniu(imgFile.getBytes(), fileName);
 
             //上传到jedis
             jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES, fileName);

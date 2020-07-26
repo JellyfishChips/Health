@@ -1,7 +1,7 @@
 package com.itheima.jobs;
 
 import com.itheima.constant.RedisConstant;
-import com.itheima.utils.QiniuUtils;
+//import com.itheima.utils.QiniuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisPool;
 
@@ -32,7 +32,7 @@ public class ClearImgJob {
         while (it.hasNext()) {
             String pic = it.next();
             //删除图片服务器中的图片
-            QiniuUtils.deleteFileFromQiniu(pic);
+            //QiniuUtils.deleteFileFromQiniu(pic);
             //删除redis中的数据
             jedisPool.getResource().srem(RedisConstant.SETMEAL_PIC_RESOURCES, pic);
         }
