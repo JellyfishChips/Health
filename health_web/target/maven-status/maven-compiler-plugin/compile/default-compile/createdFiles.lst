@@ -1,7 +1,0 @@
-com\itheima\controller\OrderSettingController.class
-com\itheima\controller\CheckitemController.class
-com\itheima\controller\CheckitemGroupController.class
-com\itheima\security\HealthUserService.class
-com\itheima\controller\SetmealController.class
-com\itheima\controller\UserController.class
-com\itheima\controller\ReportController.class
